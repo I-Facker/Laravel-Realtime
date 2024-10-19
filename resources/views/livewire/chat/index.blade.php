@@ -45,16 +45,16 @@
             </div>
         </div>
     </div>
-</div>
-<script>
-    window.addEventListener('show-alert', event => {
-        Swal.fire({
-            title: event.detail.title,
-            text: event.detail.message,
-            icon: event.detail.type,
-            timer: 5000,
-            timerProgressBar: true,
-            showConfirmButton: false
+    <script>
+        window.addEventListener('show-alert', event => {
+            Swal.fire({
+                title: event.detail.title,
+                text: event.detail.message,
+                icon: event.detail.type,
+                timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
         });
-    });
-</script>
+    </script>
+</div>

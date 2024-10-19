@@ -30,7 +30,7 @@
                                     {{-- name and date  --}}
                                     <div class="flex justify-between w-full items-center">
                                         <h6 class="truncate font-medium tracking-wider text-gray-900">
-                                            {{$conversation->getReceiver()->name}}
+                                            {{$conversation->getReceiver()->username}}
                                         </h6>
 
                                         <small class="text-gray-700">{{ $conversation->messages?->last()?->created_at?->shortAbsoluteDiffForHumans() }} </small>
