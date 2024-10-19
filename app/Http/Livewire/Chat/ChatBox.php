@@ -16,7 +16,7 @@ class ChatBox extends Component
     public $body;
     public $loadedMessages;
     public $image;
-    public $imagePreview = '';
+    public $uploadedImageUrl;
 
     public $paginate_var = 10;
 
@@ -24,6 +24,17 @@ class ChatBox extends Component
         'loadMore'
     ];
 
+    public function updatedImage()
+    {
+        if ($this->image) {
+            $username = auth()->user()->username;
+            $timestamp = time();
+            $imageName = "{$username}_{$timestamp}." . $this->image->getClientOriginalExtension();
+            $imageUrl = $this->image->storeAs('chat-images', $imageName, 'public');
+
+            $this->uploadedImageUrl = asset('/storage/' . $imageUrl);
+        }
+    }
 
     public function getListeners()
     {
@@ -134,7 +145,7 @@ class ChatBox extends Component
             'image' => $imageUrl,
         ]);
 
-        $this->reset('body', 'image');
+        $this->reset('body', 'image', 'uploadedImageUrl');
 
         #scroll to bottom
         $this->dispatchBrowserEvent('scroll-bottom');

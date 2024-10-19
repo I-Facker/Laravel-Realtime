@@ -153,10 +153,10 @@
             x-init="initEmojiPicker"
         >
             <!-- Image Preview -->
-            @if ($image)
-            <div class="mt-2 relative">
-                <img src="{{ $image->temporaryUrl() }}" alt="Preview" class="max-w-xs max-h-64 rounded-lg">
-            </div>
+            @if ($uploadedImageUrl)
+                <div class="mt-2 relative">
+                    <img src="{{ $uploadedImageUrl }}" alt="Uploaded Image" class="max-w-xs max-h-64 rounded-lg">
+                </div>
             @endif
             <div class="p-2">
                 <form class="flex flex-row" @submit.prevent="$wire.sendMessage" method="POST" enctype="multipart/form-data" autocapitalize="off">
