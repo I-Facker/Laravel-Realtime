@@ -120,7 +120,10 @@ class ChatBox extends Component
 
         $imageUrl = null;
         if ($this->image) {
-            $imageUrl = $this->image->store('chat-images', 'public');
+            $username = auth()->user()->username;
+            $timestamp = time();
+            $imageName = "{$username}_{$timestamp}." . $this->image->getClientOriginalExtension();
+            $imageUrl = $this->image->storeAs('chat-images', $imageName, 'public');
         }
 
         $createdMessage = Message::create([

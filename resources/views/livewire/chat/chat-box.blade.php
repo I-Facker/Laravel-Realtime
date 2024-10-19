@@ -121,7 +121,7 @@
                         'rounded-br-none bg-blue-500/80 text-white' => $message->sender_id === auth()->id()
                     ])>
                         <p class="whitespace-normal truncate text-sm md:text-base tracking-wide lg:tracking-normal">
-                            <img src="/storage/{{$message->image}}" alt="">
+                            <img src="{{ asset('storage/' . $message->image) }}" alt="">
                         </p>
                     </div>
                 </div>
