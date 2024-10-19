@@ -1,8 +1,6 @@
 
 ## Laravel Chat
 
-![./cover.jpeg](/cover.jpeg)
-
 ## Quick Start
 
 -   Clone or download this repo and place it into your server.
