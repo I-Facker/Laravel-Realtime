@@ -1,10 +1,7 @@
 
-## Laravel Livewire Chat Course Demo App
+## Laravel Chat
 
 ![./cover.jpeg](/cover.jpeg)
-
-
-
 
 ## Quick Start
 
