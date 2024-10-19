@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.pulsating-dot {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 100%;
+    transition: transform 375ms ease;
+}
+
+.pulsating-dot::after {
+    content: "";
+    position: absolute;
+    top: -0.75rem;
+    left: -0.75rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    opacity: 0;
+    animation: pulse 2000ms infinite forwards;
+}
+
+.pulsating-dot.positive {
+    background-color: #bada55;
+}
+
+.pulsating-dot.positive::after {
+    background-color: #bada55;
+}
+
+.pulsating-dot.neutral {
+    background-color: #e37444;
+}
+
+.pulsating-dot.neutral::after {
+    background-color: #e37444;
+}
+
+.pulsating-dot.negative {
+    background-color: #ba3838;
+}
+
+.pulsating-dot.negative::after {
+    background-color: #ba3838;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 1;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
