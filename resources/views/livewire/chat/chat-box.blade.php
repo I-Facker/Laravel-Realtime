@@ -9,8 +9,7 @@
         $nextTick(() => conversationElement.scrollTop = height);
         Echo.private('users.{{ auth()->user()->id }}')
         .notification((notification) => {
-            if(notification['type'] == 'App\\Notifications\\MessageRead' && notification['conversation_id'] == {{ $this->selectedConversation ? $this->selectedConversation->id : null }})
-            {
+            if(notification['type'] == 'App\\Notifications\\MessageRead' && notification['conversation_id'] == {{ $this->selectedConversation ? $this->selectedConversation->id : null }}) {
                 markAsRead=true;
             }
         });
@@ -54,12 +53,12 @@
             @endphp
             @foreach ($loadedMessages as $key => $message)
                 {{-- keep track of the previous message --}}
-                @if ($key>0)
+                @if ($key > 0)
                     @php
-                        $previousMessage = $loadedMessages->get($key-1)
+                        $previousMessage = $loadedMessages->get($key - 1)
                     @endphp
                 @endif
-                <div wire:key="{{time().$key}}"
+                <div wire:key="{{ time().$key }}"
                     @class([
                         'max-w-[85%] md:max-w-[78%] flex w-auto gap-2 relative mt-2',
                         'ml-auto' => $message->sender_id === auth()->id(),

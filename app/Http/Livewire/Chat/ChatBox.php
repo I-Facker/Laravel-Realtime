@@ -43,7 +43,9 @@ class ChatBox extends Component
                 $newMessage = Message::find($event['message_id']);
 
                 #push message
-                $this->loadedMessages->push($newMessage);
+                if (!$this->loadedMessages->contains('id', $newMessage->id)) {
+                    $this->loadedMessages->push($newMessage);
+                }
 
                 #mark as read
                 $newMessage->read_at = now();
@@ -102,6 +104,10 @@ class ChatBox extends Component
                 // ->take($this->paginate_var)
                 ->get()
                 ->reverse();
+            
+            $this->loadedMessages = $this->loadedMessages->merge($this->loadedMessages->filter(function ($message) {
+                return !$this->loadedMessages->contains('id', $message->id);
+            }));
 
             return $this->loadedMessages;
         }
@@ -131,7 +137,9 @@ class ChatBox extends Component
         $this->dispatchBrowserEvent('scroll-bottom');
 
         #push the message
-        $this->loadedMessages->push($createdMessage);
+        if (!$this->loadedMessages->contains('id', $createdMessage->id)) {
+            $this->loadedMessages->push($createdMessage);
+        }
 
         #update conversation model
         $this->selectedConversation->updated_at = now();
